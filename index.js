@@ -41,9 +41,29 @@ class Airplane {
 */
 
 class Person {
-
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+    this.stomach.length = 10;
+  }
+  eat(food) {
+    if (this.stomach.length < 10) {
+      this.stomach.push(food);
+    }
+  }
+  poop() {
+      this.stomach = [];
+  }
+  toString() {
+    return `${this.name}, ${this.age}`
+  }
 }
-
+const personOne = new Person("Michael", 23);
+personOne.eat("steak");
+console.log(personOne);
+personOne.poop();
+console.log(personOne);
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -80,7 +100,6 @@ class Car {
   }
 const carOne = new Car("Silverado", 18);
 carOne.fill(5);
-
 console.log(carOne);
 console.log(carOne.drive(500));
 
