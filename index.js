@@ -45,7 +45,6 @@ class Person {
     this.name = name;
     this.age = age;
     this.stomach = [];
-    this.stomach.length = 10;
   }
   eat(food) {
     if (this.stomach.length < 10) {
@@ -59,11 +58,13 @@ class Person {
     return `${this.name}, ${this.age}`
   }
 }
-const personOne = new Person("Michael", 23);
-personOne.eat("steak");
+let personOne = new Person("Michael", 23)
+console.log(personOne);
+personOne.eat("Spaghetti");
 console.log(personOne);
 personOne.poop();
 console.log(personOne);
+console.log(personOne.toString());
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -89,16 +90,20 @@ class Car {
       this.tank = this.tank + gallons;
     }
     drive(distance) {
-      this.odometer = this.odometer + distance;
-      this.tank = (this.tank - (distance/this.milesPerGallon));
-      if (this.tank <= 0) {
-        return `I ran out of fuel at ${this.odometer} miles!`;
-      } else {
-        return `Keep driving!`;
-      }
-    }
+      const drivableMiles = this.tank * this.milesPerGallon;
+      if (distance <= drivableMiles) {
+        this.odometer = this.odometer + distance;
+        this.tank = this.tank - (distance / this.milesPerGallon);
+        return `Keep Driving!`;
+      } else {
+        this.odometer = this.odometer + drivableMiles;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`
+      }
+    }
   }
 const carOne = new Car("Silverado", 18);
+console.log(carOne);
 carOne.fill(5);
 console.log(carOne);
 console.log(carOne.drive(500));
